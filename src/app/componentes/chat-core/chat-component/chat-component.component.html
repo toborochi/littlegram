@@ -8,7 +8,7 @@
           <b>{{message.from.name}}</b>
         </h4>
         <div mat-line style="white-space: normal;" *ngIf="message.action === undefined">
-          <span>{{message.content}} </span>
+          <span  >{{message.content}} </span>
         </div>
         <p mat-line *ngIf="message.action === action.JOINED" class="chat-notification">
           <span translate> <b>{{message.from.name}}</b> joined to the conversation. </span>
@@ -22,6 +22,7 @@
       <mat-icon style="padding-right: 10px" >message</mat-icon>
       <mat-form-field class="chat-input">
         <input matInput
+               autocomplete="off"
                #inputMessage
                maxlength="140"
                placeholder="{{'Escriba su mensaje'}}"

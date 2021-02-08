@@ -2,8 +2,8 @@
 
 @include mat-core();
 
-$littlegram-primary: mat-palette($mat-blue-gray);
-$littlegram-accent: mat-palette($mat-light-blue,A200,A100,A400);
+$littlegram-primary: mat-palette($mat-blue);
+$littlegram-accent: mat-palette($mat-blue,800,800,800);
 $littlegram-warn: mat-palette($mat-red,A200,A100,A400);
 
 

@@ -27,15 +27,13 @@ import {MatInputModule} from '@angular/material/input';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { ChatUsuariosComponent } from './componentes/chat-usuarios/chat-usuarios.component';
 import { ChatComponentComponent } from './componentes/chat-core/chat-component/chat-component.component';
-import { DialogUserComponent } from './componentes/chat-core/dialog-user/dialog-user.component';
 import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     ListaUsuariosComponent,
     ChatUsuariosComponent,
-    ChatComponentComponent,
-    DialogUserComponent
+    ChatComponentComponent
   ],
   imports: [
     BrowserModule,
