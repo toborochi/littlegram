@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Usuarios en Sala</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-selection-list #shoes>
+    <mat-list-option style="width: 420px" *ngFor="let shoe of typesOfShoes">
+      {{shoe}}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aplicar</button>
+</mat-dialog-actions>
