@@ -21,13 +21,21 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { ChatUsuariosComponent } from './componentes/chat-usuarios/chat-usuarios.component';
+import { ChatComponentComponent } from './componentes/chat-core/chat-component/chat-component.component';
+import { DialogUserComponent } from './componentes/chat-core/dialog-user/dialog-user.component';
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     ListaUsuariosComponent,
-    ChatUsuariosComponent
+    ChatUsuariosComponent,
+    ChatComponentComponent,
+    DialogUserComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +53,10 @@ import { ChatUsuariosComponent } from './componentes/chat-usuarios/chat-usuarios
     MatBadgeModule,
     MatDialogModule,
     MatListModule,
-    MatSidenavModule
-
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [
     HierarchicalTreeService,

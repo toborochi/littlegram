@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$littlegram-primary: mat-palette($mat-blue-gray);
+$littlegram-accent: mat-palette($mat-light-blue,A200,A100,A400);
+$littlegram-warn: mat-palette($mat-red,A200,A100,A400);
+
+
+$littlegram-theme : mat-light-theme($littlegram-primary,$littlegram-accent,$littlegram-warn);
+
+@include angular-material-theme($littlegram-theme);
