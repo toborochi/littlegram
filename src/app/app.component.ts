@@ -282,27 +282,22 @@ export class AppComponent implements OnInit,AfterViewInit {
 
   x : number;
   ngAfterViewInit(): void {
+
+    this.diagram.historyChange.subscribe(_=>{
+      console.log('s');
+    });
+
     this.diagram.height=this.elementView.nativeElement.offsetHeight;
     this.diagram.propertyChange.subscribe(_=>{
 
-      console.log('Cambio');
+      //console.log('Cambio');
     });
 
   }
 
   data:string;
 
-  guardar(){
-    console.log(this.diagram.nodes);
-    console.log(this.diagram.connectors);
-    this.data=this.diagram.saveDiagram();
-    this.diagram.clear();
-  }
 
-  cargar(){
-    this.diagram.loadDiagram(this.data);
-
-  }
 
   exportPNG(){
     let x : IExportOptions = {
@@ -331,6 +326,19 @@ export class AppComponent implements OnInit,AfterViewInit {
       });
     }
 
+  }
+
+
+  guardar(){
+    console.log(this.diagram.nodes);
+    console.log(this.diagram.connectors);
+
+    this.data=this.diagram.saveDiagram();
+    this.diagram.clear();
+  }
+
+  cargar(){
+    this.diagram.loadDiagram(this.data);
   }
 
 }

@@ -56,11 +56,14 @@ export class ChatComponentComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    let usr : string = 'Leonardo Añez';
+    let splitted = usr.split(" ", 2);
+
     this.messages.push({
       from: {
-        name: 'Leo',
+        name: 'Leonardo Añez',
         id: 45,
-        avatar: AVATAR_URL
+        avatar: `https://ui-avatars.com/api/?name=${splitted[0]}+${splitted[1]}`
       },
       action: undefined,
       content: message
