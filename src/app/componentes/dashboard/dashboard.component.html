@@ -2,7 +2,7 @@
   <mat-drawer-container fxFill >
     <mat-drawer mode="side" opened class="mat-drawer-side">
       <img  style="width: 100%;" src="assets/lilg_blue.svg">
-      <button routerLink="/editor" style="width: 100%;" mat-raised-button color="primary">Crear Diagrama</button>
+      <button (click)="openDialog()" style="width: 100%;" mat-raised-button color="primary">Crear Diagrama</button>
     </mat-drawer>
     <mat-drawer-content style="background-color: #2196F3">
       <mat-toolbar color="accent">
@@ -12,7 +12,7 @@
       <mat-list>
         <div mat-subheader>Diagramas</div>
         <mat-list-item *ngFor="let folder of folders">
-          <mat-icon mat-list-icon>folder</mat-icon>
+          <img mat-list-avatar src="https://karmaburn.com/files/screenshots/carnival_phantasm/saber0802.jpg">
           <div mat-line>{{folder.name}}</div>
           <div mat-line> {{folder.updated | date}} </div>
         </mat-list-item>

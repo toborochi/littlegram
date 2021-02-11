@@ -32,6 +32,7 @@ import {FormsModule} from '@angular/forms';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EditorComponent } from './componentes/editor/editor.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
+import { NuevoDiagramaComponent } from './componentes/dialogos/nuevo-diagrama/nuevo-diagrama.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { DashboardComponent } from './componentes/dashboard/dashboard.component'
     ChatComponentComponent,
     InicioComponent,
     EditorComponent,
-    DashboardComponent
+    DashboardComponent,
+    NuevoDiagramaComponent
   ],
   imports: [
     BrowserModule,

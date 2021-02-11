@@ -1,0 +1,16 @@
+<div  fxLayout="row" fxLayoutAlign="space-between center" >
+  <h2 mat-dialog-title>Nuevo Diagrama</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+</div>
+<mat-dialog-content style="width: 240px" class="mat-typography">
+  <mat-form-field  appearance="outline" style="width: 100%" >
+    <mat-label>Nombre Diagrama</mat-label>
+    <input autocomplete="off" type="text" matInput placeholder="Nombre">
+    <mat-icon matSuffix>extension</mat-icon>
+  </mat-form-field>
+  <button (click)="goEditor()" style="width: 100%;" mat-raised-button color="primary">Crear</button>
+</mat-dialog-content>
