@@ -8,5 +8,15 @@
       <mat-toolbar color="accent">
         <span>Bienvenido Leonardo!</span>
       </mat-toolbar>
+      <mat-card style="margin: 24px">
+      <mat-list>
+        <div mat-subheader>Diagramas</div>
+        <mat-list-item *ngFor="let folder of folders">
+          <mat-icon mat-list-icon>folder</mat-icon>
+          <div mat-line>{{folder.name}}</div>
+          <div mat-line> {{folder.updated | date}} </div>
+        </mat-list-item>
+      </mat-list>
+      </mat-card>
     </mat-drawer-content>
   </mat-drawer-container>
