@@ -17,7 +17,7 @@ export class NuevoDiagramaComponent implements OnInit {
 
   goEditor(){
     this.dialog.closeAll();
-    this.router.navigateByUrl('/editor');
+    this.router.navigateByUrl('/editor/');
   }
 
 }

@@ -13,8 +13,20 @@
         <div mat-subheader>Diagramas</div>
         <mat-list-item *ngFor="let folder of folders">
           <img mat-list-avatar src="https://karmaburn.com/files/screenshots/carnival_phantasm/saber0802.jpg">
-          <div mat-line>{{folder.name}}</div>
+          <div mat-line>{{folder.name}} (Creado por: Leonardo Añez)</div>
           <div mat-line> {{folder.updated | date}} </div>
+           <div>
+             <mat-button-toggle-group class="toggle-custom" fxLayout="row" fxLayoutAlign="start stretch"
+               [disabled]="disabled" [appearance]="appearance">
+               <button color="success" class="mat-elevation-z0 boton-left" mat-button mat-raised-button style="min-width: unset;">
+                 <mat-icon>remove_red_eye</mat-icon>
+               </button>
+               <button color="download" class="mat-elevation-z0 boton-right" mat-button mat-raised-button style="min-width: unset;">
+                 <mat-icon>cloud_download</mat-icon>
+               </button>
+               <div></div>
+             </mat-button-toggle-group>
+           </div>
         </mat-list-item>
       </mat-list>
       </mat-card>

@@ -8,7 +8,7 @@ import {DashboardComponent} from './componentes/dashboard/dashboard.component';
 const routes: Routes = [
   {
     component: EditorComponent,
-    path:'editor'
+    path:'editor/:id'
   },
   {
     component: DashboardComponent,

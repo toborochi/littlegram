@@ -20,3 +20,34 @@
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+.boton-right{
+  border-radius: 0px 8px 8px 0px;
+}
+
+.boton-left{
+  border-radius: 8px 0px 0px 8px;
+}
+
+
+.mat-success {
+  background-color: #1dde78;
+  color: #fff;
+}
+
+.mat-download {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.toggle-custom{
+  border: none;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {NuevoDiagramaComponent} from '../dialogos/nuevo-diagrama/nuevo-diagrama.component';
+import {MatButtonToggleAppearance} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,8 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
+  disabled = false;
+  appearance: MatButtonToggleAppearance = 'standard';
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {

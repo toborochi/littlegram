@@ -25,6 +25,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRippleModule} from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { ChatUsuariosComponent } from './componentes/chat-usuarios/chat-usuarios.component';
 import { ChatComponentComponent } from './componentes/chat-core/chat-component/chat-component.component';
@@ -64,6 +65,7 @@ import { NuevoDiagramaComponent } from './componentes/dialogos/nuevo-diagrama/nu
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
+    MatButtonToggleModule,
     MatRippleModule,
     FormsModule
   ],
