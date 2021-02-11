@@ -1,0 +1,65 @@
+<div fxFill style="background-color: #2196F3">
+
+
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.md="column"
+    fxFlexFill
+    fxLayoutAlign="center center"
+  >
+
+    <div fxFlex="33.33" style="padding: 2%">
+      <img  style="width: 100%" src="assets/lilg.svg">
+      <mat-card >
+        <mat-tab-group animationDuration="0ms" mat-stretch-tabs>
+          <mat-tab  fxFlexFill label="Crear">
+            <h2 style="padding-top: 12px">Crear Cuenta</h2>
+            <form>
+
+              <mat-form-field  appearance="outline" style="width: 100%" >
+                <mat-label>Nombre(s)</mat-label>
+                <input autocomplete="off" type="text" matInput placeholder="Nombre(s)">
+                <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
+              </mat-form-field>
+              <mat-form-field  appearance="outline" style="width: 100%" >
+                <mat-label>Apellido(s)</mat-label>
+                <input autocomplete="off" type="text" matInput placeholder="Apellido(s)">
+                <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
+              </mat-form-field>
+              <mat-form-field  appearance="outline" style="width: 100%" >
+                <mat-label>Correo</mat-label>
+                <input autocomplete="off" type="email" matInput placeholder="ejemplo@correo.com">
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field  appearance="outline" style="width: 100%" >
+                <mat-label>Contraseña</mat-label>
+                <input autocomplete="off" type="password" matInput placeholder="contraseña">
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+              <button routerLink="/dashboard"  style="width: 100%" type="submit" mat-flat-button color="primary">Crear</button>
+            </form>
+          </mat-tab>
+          <mat-tab fxFlexFill label="Iniciar">
+            <h2 style="padding-top: 12px">Iniciar Sesión</h2>
+            <form>
+              <mat-form-field  appearance="outline" style="width: 100%" >
+                <mat-label>Correo</mat-label>
+                <input type="email" matInput placeholder="ejemplo@correo.com">
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field  appearance="outline" style="width: 100%" >
+                <mat-label>Contraseña</mat-label>
+                <input type="email" matInput placeholder="contraseña">
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+              <button routerLink="/dashboard" style="width: 100%" type="submit" mat-flat-button color="primary">Iniciar</button>
+            </form>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+
+    </div>
+  </div>
+
+</div>
