@@ -19,6 +19,7 @@
   width:240px;
   height:100%;
   float:left;
+  border: none;
 }
 
 .sb-mobile-palette-bar {

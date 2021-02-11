@@ -22,6 +22,30 @@ export class DashboardComponent implements OnInit {
     {
       name: 'Introducción a la Informática',
       updated: new Date('1/28/16'),
+    },
+    {
+      name: 'Estructuras de Datos',
+      updated: new Date('1/1/16'),
+    },
+    {
+      name: 'Estructuras de Datos',
+      updated: new Date('1/17/16'),
+    },
+    {
+      name: 'Introducción a la Informática',
+      updated: new Date('1/28/16'),
+    },
+    {
+      name: 'Estructuras de Datos',
+      updated: new Date('1/1/16'),
+    },
+    {
+      name: 'Estructuras de Datos',
+      updated: new Date('1/17/16'),
+    },
+    {
+      name: 'Introducción a la Informática',
+      updated: new Date('1/28/16'),
     }
   ];
 
