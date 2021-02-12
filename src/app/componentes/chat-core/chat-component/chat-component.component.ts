@@ -63,7 +63,7 @@ export class ChatComponentComponent implements OnInit, AfterViewInit {
       from: {
         name: 'Leonardo Añez',
         id: 45,
-        avatar: `https://ui-avatars.com/api/?name=${splitted[0]}+${splitted[1]}`
+        avatar: `https://avatar.oxro.io/avatar.svg?name=${splitted[0]}`
       },
       action: undefined,
       content: message
