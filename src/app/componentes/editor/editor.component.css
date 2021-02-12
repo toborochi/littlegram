@@ -15,6 +15,23 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.ripple-back {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 100%;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .sb-mobile-palette {
   width:240px;
   height:100%;
@@ -95,5 +112,11 @@
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+
+.mat-info {
+  background-color: white;
+  color: #2196F3;
 }
 

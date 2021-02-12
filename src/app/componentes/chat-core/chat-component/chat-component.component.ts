@@ -39,7 +39,7 @@ export class ChatComponentComponent implements OnInit, AfterViewInit {
   }
 
   private initModel(): void {
-    const randomId = 66;
+    const randomId = 45;
     this.user = {
       id: randomId,
       avatar: `${AVATAR_URL}/${randomId}.png`

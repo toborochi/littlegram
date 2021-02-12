@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {NuevoDiagramaComponent} from '../dialogos/nuevo-diagrama/nuevo-diagrama.component';
 import {MatButtonToggleAppearance} from '@angular/material/button-toggle';
+import { faDownload,faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,8 @@ import {MatButtonToggleAppearance} from '@angular/material/button-toggle';
 })
 export class DashboardComponent implements OnInit {
 
+  download_icon= faDownload;
+  eye_icon= faEye;
   folders: any[] = [
     {
       name: 'Estructuras de Datos',

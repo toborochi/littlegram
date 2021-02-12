@@ -15,6 +15,8 @@ import {ExpandMode} from '@syncfusion/ej2-navigations';
 import {paletteIconClick} from '../../../scripts/diagram-common';
 import {ChatUsuariosComponent} from '../chat-usuarios/chat-usuarios.component';
 import {ListaUsuariosComponent} from '../lista-usuarios/lista-usuarios.component';
+import { faQuestion,faComments,faFolderOpen,faKey,faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-editor',
@@ -22,6 +24,12 @@ import {ListaUsuariosComponent} from '../lista-usuarios/lista-usuarios.component
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit,AfterViewInit {
+
+  pregunta_icon = faQuestion;
+  chat_icon = faComments;
+  folder_icon = faFolderOpen;
+  llave_icon = faKey;
+  volver_icon = faChevronLeft;
 
   @ViewChild('diagram')
   public diagram: DiagramComponent;
@@ -31,7 +39,8 @@ export class EditorComponent implements OnInit,AfterViewInit {
 
   @ViewChild('angcard') elementView: ElementRef;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+              private router: Router) {}
 
 
   private connectorSymbols: ConnectorModel[] = [
@@ -334,6 +343,11 @@ export class EditorComponent implements OnInit,AfterViewInit {
 
   cargar(){
     this.diagram.loadDiagram(this.data);
+  }
+
+  goDashboard(){
+    this.dialog.closeAll();
+    this.router.navigateByUrl('/dashboard');
   }
 
 }

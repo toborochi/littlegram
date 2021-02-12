@@ -34,6 +34,7 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EditorComponent } from './componentes/editor/editor.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { NuevoDiagramaComponent } from './componentes/dialogos/nuevo-diagrama/nuevo-diagrama.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,8 @@ import { NuevoDiagramaComponent } from './componentes/dialogos/nuevo-diagrama/nu
     MatTabsModule,
     MatButtonToggleModule,
     MatRippleModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [
     HierarchicalTreeService,
