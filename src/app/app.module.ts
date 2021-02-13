@@ -25,11 +25,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRippleModule} from '@angular/material/core';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { ChatUsuariosComponent } from './componentes/chat-usuarios/chat-usuarios.component';
 import { ChatComponentComponent } from './componentes/chat-core/chat-component/chat-component.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EditorComponent } from './componentes/editor/editor.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
@@ -72,9 +73,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatTabsModule,
     MatButtonToggleModule,
     MatRippleModule,
+    MatSlideToggleModule,
     FormsModule,
     FontAwesomeModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    ReactiveFormsModule
   ],
   providers: [
     HierarchicalTreeService,

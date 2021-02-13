@@ -17,5 +17,13 @@ export class EditorService {
     });
   }
 
+  initConnection(user: string) {
+    this.socket.emit('entrante', {
+      usuario: user,
+    });
+  }
+
+
+
 
 }

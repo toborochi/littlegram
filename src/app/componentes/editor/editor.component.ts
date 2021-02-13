@@ -292,7 +292,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   ngOnInit(): void {
       this._diagrama = this.editorService.currentDiagram.subscribe(data=>{
         console.log(data.usuario);
-        if(data.usuario && data.usuario!=localStorage.getItem('iden')){
+        if(data.usuario && data.data && data.usuario!=localStorage.getItem('iden')){
           this.diagram.loadDiagram(data.data);
         }
       });
@@ -306,6 +306,8 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
   x : number;
   ngAfterViewInit(): void {
+
+    this.editorService.initConnection('55');
 
     this.diagram.textEdit.subscribe(data=>{
       this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'));

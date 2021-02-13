@@ -1,7 +1,88 @@
 <mat-toolbar  color="primary" class="app-toolbar" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" >
   <div class="spacer-toolbar"></div>
-  <button (click)="goDashboard()" mat-raised-button class="mat-elevation-z0">Crear Cuenta</button>
-  <button (click)="goDashboard()" mat-stroked-button>Iniciar Sesión</button>
+  <button mat-raised-button class="mat-elevation-z0"
+          (click)="trigger2.closeMenu()"
+          [matMenuTriggerFor]="menu"
+          #trigger="matMenuTrigger">Crear Cuenta</button>
+  <mat-menu  #menu="matMenu" class="menu-form-wrapper" [hasBackdrop]="false"  xPosition="before" >
+
+    <div  (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+      <div style="padding: 16px" fxLayout="row" fxLayoutAlign="space-between center" >
+        <b>Crear</b>
+        <mat-slide-toggle [(ngModel)]="isChecked">Docente</mat-slide-toggle>
+      </div>
+      <mat-divider></mat-divider>
+      <form class="menu-form" [formGroup]="registerForm">
+
+
+        <mat-form-field appearance="outline" >
+          <mat-label>Nombre</mat-label>
+          <input  formControlName="name" matInput type="text">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+          <mat-label>Correo</mat-label>
+          <input formControlName="email" matInput type="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+          <mat-label>Contraseña</mat-label>
+          <input formControlName="pass" matInput type="password">
+        </mat-form-field>
+
+        <span fxLayout="row" fxLayoutAlign="center stretch" >
+        <button style="width: 100%" mat-flat-button (click)="trigger.closeMenu()">Cancelar</button>
+        &nbsp;
+        &nbsp;
+        <button (click)="registrar()" type="submit" style="width: 100%" mat-flat-button color="primary">Aceptar</button>
+      </span>
+
+      </form>
+
+    </div>
+
+  </mat-menu>
+
+  <button [matMenuTriggerFor]="menu2"
+          (click)="trigger.closeMenu()"
+          #trigger2="matMenuTrigger" mat-stroked-button>Iniciar Sesión</button>
+
+  <mat-menu #menu2="matMenu" class="menu-form-wrapper" [hasBackdrop]="false"
+            xPosition="before"
+  >
+
+    <div  (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+      <div style="padding: 16px" fxLayout="row" fxLayoutAlign="start center" >
+        <b>Iniciar</b>
+      </div>
+      <mat-divider></mat-divider>
+      <form class="menu-form" [formGroup]="registerForm">
+
+
+
+
+        <mat-form-field appearance="outline" >
+          <mat-label>Correo</mat-label>
+          <input formControlName="email" matInput type="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+          <mat-label>Contraseña</mat-label>
+          <input formControlName="pass" matInput type="password">
+        </mat-form-field>
+
+        <span fxLayout="row" fxLayoutAlign="center stretch" >
+        <button style="width: 100%" mat-flat-button (click)="trigger2.closeMenu()">Cancelar</button>
+        &nbsp;
+        &nbsp;
+        <button (click)="iniciar()" type="submit" style="width: 100%" mat-flat-button color="primary">Aceptar</button>
+      </span>
+
+      </form>
+
+    </div>
+
+  </mat-menu>
 </mat-toolbar>
 <div  style="background-color: #2196F3; height: calc(100% - 64px)">
   <div

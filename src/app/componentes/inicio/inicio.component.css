@@ -15,3 +15,24 @@
 .spacer-toolbar {
   flex: 1 1 auto;
 }
+
+.basic-container {
+  padding: 30px;
+}
+
+.menu-form-wrapper{
+  padding: 8px;
+  margin: 8px;
+}
+
+.mat-menu-content:not(:empty) {
+  padding: 0;
+}
+
+
+.menu-form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
