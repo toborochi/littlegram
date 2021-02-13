@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  goDashboard(){
+    let x = Math.trunc(Math.random()*1000);
+    localStorage.setItem('iden',x.toString());
+    console.log(localStorage.getItem('iden'));
+    this.router.navigateByUrl('/dashboard');
   }
 
 }

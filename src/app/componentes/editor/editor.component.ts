@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {DiagramComponent, IExportOptions, PortVisibility, SymbolPaletteComponent} from '@syncfusion/ej2-angular-diagrams';
 import {MatDialog} from '@angular/material/dialog';
 import {
@@ -17,13 +17,15 @@ import {ChatUsuariosComponent} from '../chat-usuarios/chat-usuarios.component';
 import {ListaUsuariosComponent} from '../lista-usuarios/lista-usuarios.component';
 import { faQuestion,faComments,faFolderOpen,faKey,faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
+import {EditorService} from '../../servicios/editor/editor.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
-export class EditorComponent implements OnInit,AfterViewInit {
+export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
   pregunta_icon = faQuestion;
   chat_icon = faComments;
@@ -39,8 +41,11 @@ export class EditorComponent implements OnInit,AfterViewInit {
 
   @ViewChild('angcard') elementView: ElementRef;
 
+  private _diagrama: Subscription;
+
   constructor(public dialog: MatDialog,
-              private router: Router) {}
+              private router: Router,
+              private editorService: EditorService) {}
 
 
   private connectorSymbols: ConnectorModel[] = [
@@ -285,18 +290,33 @@ export class EditorComponent implements OnInit,AfterViewInit {
 
 
   ngOnInit(): void {
-
+      this._diagrama = this.editorService.currentDiagram.subscribe(data=>{
+        console.log(data.usuario);
+        if(data.usuario && data.usuario!=localStorage.getItem('iden')){
+          this.diagram.loadDiagram(data.data);
+        }
+      });
 
   }
+
+  ngOnDestroy(): void {
+    this._diagrama.unsubscribe();
+  }
+
 
   x : number;
   ngAfterViewInit(): void {
 
-    this.diagram.historyChange.subscribe(_=>{
-      console.log('s');
+    this.diagram.textEdit.subscribe(data=>{
+      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'));
     });
 
-    this.diagram.height=this.elementView.nativeElement.offsetHeight;
+    this.diagram.historyChange.subscribe(data=>{
+
+      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'));
+    });
+
+    //this.diagram.height=this.elementView.nativeElement.offsetHeight;
   }
 
   data:string;

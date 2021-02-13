@@ -35,6 +35,10 @@ import { EditorComponent } from './componentes/editor/editor.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { NuevoDiagramaComponent } from './componentes/dialogos/nuevo-diagrama/nuevo-diagrama.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +73,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatButtonToggleModule,
     MatRippleModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     HierarchicalTreeService,

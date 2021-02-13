@@ -1,7 +1,7 @@
 <mat-toolbar  color="primary" class="app-toolbar" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" >
   <div class="spacer-toolbar"></div>
-  <button routerLink="/dashboard" mat-raised-button class="mat-elevation-z0">Crear Cuenta</button>
-  <button routerLink="/dashboard" mat-stroked-button>Iniciar Sesión</button>
+  <button (click)="goDashboard()" mat-raised-button class="mat-elevation-z0">Crear Cuenta</button>
+  <button (click)="goDashboard()" mat-stroked-button>Iniciar Sesión</button>
 </mat-toolbar>
 <div  style="background-color: #2196F3; height: calc(100% - 64px)">
   <div
