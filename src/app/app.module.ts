@@ -39,7 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-
+import { HttpClientModule } from '@angular/common/http';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 import { NgxSpinnerModule } from "ngx-spinner";
 
@@ -95,7 +95,8 @@ var config_firebase = {
     ReactiveFormsModule,
     AngularFireModule.initializeApp(config_firebase),
     AngularFireAuthModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    HttpClientModule
   ],
   providers: [
     HierarchicalTreeService,

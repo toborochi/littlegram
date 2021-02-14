@@ -23,9 +23,17 @@ export class AuthService {
     })
   }
 
-  async login(email: string, password: string) {
-    var result = await this.afAuth.signInWithEmailAndPassword(email, password)
-    await this.router.navigateByUrl('/dashboard');
+  async login(email: string, password: string,spinner : NgxSpinnerService) {
+    spinner.show();
+    var result = await this.afAuth.signInWithEmailAndPassword(email, password).then(
+      ()=>{
+        this.router.navigateByUrl('/dashboard');
+        spinner.hide();
+      },
+      ()=>{
+        spinner.hide();
+      }
+    );
   }
 
   async register(name: string, email: string, password: string,spinner : NgxSpinnerService) {
@@ -36,10 +44,12 @@ export class AuthService {
           displayName: name,
           photoURL: ''
         });
-
+        this.sendEmailVerification(spinner);
+      },
+      ()=>{
+        spinner.hide();
       }
     );
-    await this.sendEmailVerification(spinner);
   }
 
   async sendEmailVerification(spinner : NgxSpinnerService) {
@@ -60,4 +70,8 @@ export class AuthService {
     const  user  =  JSON.parse(localStorage.getItem('user'));
     return  user  !==  null;
   }
+
+  async isVerified(){
+  }
+
 }

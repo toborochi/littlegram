@@ -7,9 +7,15 @@
   </button>
 </div>
 <mat-dialog-content style="width: 240px" class="mat-typography">
+  <form class="menu-form" [formGroup]="createDiagramForm">
+  <mat-form-field  appearance="outline" style="width: 100%" >
+    <mat-label>Materia</mat-label>
+    <input  formControlName="asignment"  autocomplete="off" type="text" matInput placeholder="Nombre">
+  </mat-form-field>
   <mat-form-field  appearance="outline" style="width: 100%" >
     <mat-label>Nombre Diagrama</mat-label>
-    <input autocomplete="off" type="text" matInput placeholder="Nombre">
+    <input  formControlName="name" autocomplete="off" type="text" matInput placeholder="Nombre">
   </mat-form-field>
+  </form>
   <button (click)="goEditor()" style="width: 100%;" mat-raised-button color="primary">Crear</button>
 </mat-dialog-content>
