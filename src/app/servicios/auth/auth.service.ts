@@ -42,9 +42,8 @@ export class AuthService {
   async sendEmailVerification() {
     await this.afAuth.currentUser.then(u => u.sendEmailVerification())
       .then((data) => {
-        console.log('chequeo');
+        this.router.navigateByUrl('/dashboard');
       });
-    console.log('xxx');
   }
 
   async logout(){
