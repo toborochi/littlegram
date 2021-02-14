@@ -41,6 +41,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import { NgxSpinnerModule } from "ngx-spinner";
 
 var config_firebase = {
   apiKey: "AIzaSyC_KBHVE5Ba_NOHaPS4_GzbR3X5qrOKCYs",
@@ -93,7 +94,8 @@ var config_firebase = {
     SocketIoModule.forRoot(config),
     ReactiveFormsModule,
     AngularFireModule.initializeApp(config_firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxSpinnerModule
   ],
   providers: [
     HierarchicalTreeService,

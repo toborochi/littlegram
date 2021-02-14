@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from '../../servicios/auth/auth.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 
 @Component({
@@ -11,7 +12,8 @@ import {AuthService} from '../../servicios/auth/auth.service';
 })
 export class InicioComponent implements OnInit {
   constructor(private router: Router,
-              private  authService:  AuthService) { }
+              private  authService:  AuthService,
+              private spinner: NgxSpinnerService) { }
 
   isChecked = false;
 
@@ -43,8 +45,10 @@ export class InicioComponent implements OnInit {
     this.authService.register(
       this.registerForm.value.name,
       this.registerForm.value.email,
-      this.registerForm.value.pass
+      this.registerForm.value.pass,
+      this.spinner
       );
+
   }
 
   iniciar(){

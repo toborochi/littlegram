@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import User = firebase.User;
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from  "@angular/router";
+import {NgxSpinnerService} from 'ngx-spinner';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,21 +28,24 @@ export class AuthService {
     await this.router.navigate(['admin/list']);
   }
 
-  async register(name: string, email: string, password: string) {
+  async register(name: string, email: string, password: string,spinner : NgxSpinnerService) {
+    spinner.show()
     var result = await this.afAuth.createUserWithEmailAndPassword(email, password).then(
       userData=>{
         userData.user.updateProfile({
           displayName: name,
           photoURL: ''
         });
+
       }
     );
-    await this.sendEmailVerification();
+    await this.sendEmailVerification(spinner);
   }
 
-  async sendEmailVerification() {
+  async sendEmailVerification(spinner : NgxSpinnerService) {
     await this.afAuth.currentUser.then(u => u.sendEmailVerification())
       .then((data) => {
+        spinner.hide();
         this.router.navigateByUrl('/dashboard');
       });
   }
