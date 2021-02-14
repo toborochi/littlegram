@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {NuevoDiagramaComponent} from '../dialogos/nuevo-diagrama/nuevo-diagrama.component';
 import {MatButtonToggleAppearance} from '@angular/material/button-toggle';
 import { faDownload,faEye } from '@fortawesome/free-solid-svg-icons';
+import {AuthService} from '../../servicios/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -54,7 +55,8 @@ export class DashboardComponent implements OnInit {
 
   disabled = false;
   appearance: MatButtonToggleAppearance = 'standard';
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              private  authService:  AuthService) { }
 
   ngOnInit(): void {
   }
@@ -63,6 +65,10 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(NuevoDiagramaComponent);
 
 
+  }
+
+  closeSesion(){
+    this.authService.logout();
   }
 
 }

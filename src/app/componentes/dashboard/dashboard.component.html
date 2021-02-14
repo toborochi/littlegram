@@ -2,11 +2,13 @@
   <mat-drawer-container fxFill >
     <mat-drawer mode="side" opened class="mat-drawer-side">
       <img  style="width: 100%;" src="assets/lilg_blue.svg">
-      <button (click)="openDialog()" style="width: 100%;" mat-raised-button color="primary">Crear Diagrama</button>
+      <button (click)="openDialog()" style="width: 100%; margin-top: 20px"  mat-raised-button color="primary">Crear Diagrama</button>
     </mat-drawer>
     <mat-drawer-content style="background-color: #2196F3">
       <mat-toolbar color="accent">
         <span>Bienvenido Leonardo!</span>
+        <span class="spacer"></span>
+        <button (click)="closeSesion()" mat-stroked-button >Cerrar Sesión</button>
       </mat-toolbar>
       <mat-card style="margin: 24px">
       <mat-list>
