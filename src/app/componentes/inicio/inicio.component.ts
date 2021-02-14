@@ -54,6 +54,10 @@ export class InicioComponent implements OnInit {
   iniciar(){
     console.log(this.loginForm.value);
     console.log(this.isChecked);
+    this.authService.login(
+      this.loginForm.value.email,
+      this.loginForm.value.pass
+    );
   }
 
 }

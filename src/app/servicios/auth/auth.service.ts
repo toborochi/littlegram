@@ -25,7 +25,7 @@ export class AuthService {
 
   async login(email: string, password: string) {
     var result = await this.afAuth.signInWithEmailAndPassword(email, password)
-    await this.router.navigate(['admin/list']);
+    await this.router.navigateByUrl('/dashboard');
   }
 
   async register(name: string, email: string, password: string,spinner : NgxSpinnerService) {

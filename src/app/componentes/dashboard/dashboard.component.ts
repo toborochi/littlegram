@@ -4,6 +4,7 @@ import {NuevoDiagramaComponent} from '../dialogos/nuevo-diagrama/nuevo-diagrama.
 import {MatButtonToggleAppearance} from '@angular/material/button-toggle';
 import { faDownload,faEye } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../servicios/auth/auth.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
