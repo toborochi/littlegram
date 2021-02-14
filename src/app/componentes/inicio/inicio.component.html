@@ -6,7 +6,7 @@
           #trigger="matMenuTrigger">Crear Cuenta</button>
   <mat-menu  #menu="matMenu" class="menu-form-wrapper" [hasBackdrop]="false"  xPosition="before" >
 
-    <div  (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+    <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
       <div style="padding: 16px" fxLayout="row" fxLayoutAlign="space-between center" >
         <b>Crear</b>
         <mat-slide-toggle [(ngModel)]="isChecked">Docente</mat-slide-toggle>

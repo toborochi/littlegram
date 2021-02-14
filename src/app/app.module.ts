@@ -37,8 +37,22 @@ import { DashboardComponent } from './componentes/dashboard/dashboard.component'
 import { NuevoDiagramaComponent } from './componentes/dialogos/nuevo-diagrama/nuevo-diagrama.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
+var config_firebase = {
+  apiKey: "AIzaSyC_KBHVE5Ba_NOHaPS4_GzbR3X5qrOKCYs",
+  authDomain: "littlegram-beta.firebaseapp.com",
+  databaseURL: "https://littlegram-beta-default-rtdb.firebaseio.com",
+  projectId: "littlegram-beta",
+  storageBucket: "littlegram-beta.appspot.com",
+  messagingSenderId: "765380842157",
+  appId: "1:765380842157:web:158f10899cda2936146c24",
+  measurementId: "G-NM05S1WTFB"
+
+};
 
 @NgModule({
   declarations: [
@@ -77,7 +91,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     FormsModule,
     FontAwesomeModule,
     SocketIoModule.forRoot(config),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(config_firebase),
+    AngularFireAuthModule
   ],
   providers: [
     HierarchicalTreeService,

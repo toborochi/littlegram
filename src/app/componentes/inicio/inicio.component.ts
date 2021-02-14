@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {AuthService} from '../../servicios/auth/auth.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private  authService:  AuthService) { }
 
   isChecked = false;
 
@@ -37,6 +39,12 @@ export class InicioComponent implements OnInit {
   registrar(){
     console.log(this.registerForm.value);
     console.log(this.isChecked);
+
+    this.authService.register(
+      this.registerForm.value.name,
+      this.registerForm.value.email,
+      this.registerForm.value.pass
+      );
   }
 
   iniciar(){
