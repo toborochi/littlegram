@@ -1,6 +1,6 @@
 <div  fxLayout="row" fxLayoutAlign="space-between center" >
   <h2 mat-dialog-title>Nuevo Diagrama</h2>
-  <button mat-icon-button mat-dialog-close>
+  <button (click)="closeModal()" mat-icon-button mat-dialog-close>
     <mat-icon>
       close
     </mat-icon>
@@ -17,5 +17,9 @@
     <input  formControlName="name" autocomplete="off" type="text" matInput placeholder="Nombre">
   </mat-form-field>
   </form>
-  <button (click)="goEditor()" style="width: 100%;" mat-raised-button color="primary">Crear</button>
+  <button (click)="goEditor()" style="width: 100%;" mat-raised-button color="primary">
+
+    Crear
+
+  </button>
 </mat-dialog-content>
