@@ -31,12 +31,7 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goDashboard(){
-    let x = Math.trunc(Math.random()*1000);
-    localStorage.setItem('iden',x.toString());
-    console.log(localStorage.getItem('iden'));
-    this.router.navigateByUrl('/dashboard');
-  }
+
 
   registrar(){
     console.log(this.registerForm.value);

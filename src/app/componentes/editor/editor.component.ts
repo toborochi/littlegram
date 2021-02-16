@@ -310,12 +310,12 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
     this.editorService.initConnection('55');
 
     this.diagram.textEdit.subscribe(data=>{
-      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'));
+      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'),'');
     });
 
     this.diagram.historyChange.subscribe(data=>{
 
-      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'));
+      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'),'');
     });
 
     //this.diagram.height=this.elementView.nativeElement.offsetHeight;

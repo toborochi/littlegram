@@ -10,9 +10,10 @@ export class EditorService {
 
   constructor(private socket: Socket) { }
 
-  editDiagram(document: any,user:string) {
+  editDiagram(document: any,user:string,id:string) {
     this.socket.emit('edit', {
       usuario: user,
+      diagrama_id: id,
       data: document
     });
   }
