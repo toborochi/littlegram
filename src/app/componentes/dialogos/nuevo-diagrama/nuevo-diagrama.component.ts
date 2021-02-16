@@ -32,7 +32,7 @@ export class NuevoDiagramaComponent implements OnInit {
   }
 
   closeModal(){
-    console.log(this.authService.user.displayName);
+    //console.log(this.authService.user.displayName);
     this.spinner.hide();
   }
 
@@ -54,8 +54,8 @@ export class NuevoDiagramaComponent implements OnInit {
     };
 
 
-    console.log('Intentando crear: ',diagrama);
-    console.log(this.message);
+    //console.log('Intentando crear: ',diagrama);
+    //console.log(this.message);
     let sr  = await this.dashboardService.createDiagram(diagrama).subscribe(value=>{
       console.log(value.data.diagram_id);
       this.message=value.message;

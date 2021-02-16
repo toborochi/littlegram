@@ -16,9 +16,11 @@ import {paletteIconClick} from '../../../scripts/diagram-common';
 import {ChatUsuariosComponent} from '../chat-usuarios/chat-usuarios.component';
 import {ListaUsuariosComponent} from '../lista-usuarios/lista-usuarios.component';
 import { faQuestion,faComments,faFolderOpen,faKey,faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EditorService} from '../../servicios/editor/editor.service';
 import {Subscription} from 'rxjs';
+import firebase from 'firebase';
+import User = firebase.User;
 
 @Component({
   selector: 'app-editor',
@@ -27,6 +29,7 @@ import {Subscription} from 'rxjs';
 })
 export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
+  u : User = JSON.parse(localStorage.getItem('user'));
   pregunta_icon = faQuestion;
   chat_icon = faComments;
   folder_icon = faFolderOpen;
@@ -42,10 +45,12 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   @ViewChild('angcard') elementView: ElementRef;
 
   private _diagrama: Subscription;
+  private diagram_id : string;
 
   constructor(public dialog: MatDialog,
               private router: Router,
-              private editorService: EditorService) {}
+              private editorService: EditorService,
+              private route: ActivatedRoute) {}
 
 
   private connectorSymbols: ConnectorModel[] = [
@@ -289,9 +294,16 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
 
 
+
   ngOnInit(): void {
+
+    this.u  = JSON.parse(localStorage.getItem('user'));
+
+    this.diagram_id = this.route.snapshot.paramMap.get('id');
+    console.log(this.diagram_id);
+
       this._diagrama = this.editorService.currentDiagram.subscribe(data=>{
-        console.log(data.usuario);
+        //console.log(data.usuario);
         if(data.usuario && data.data && data.usuario!=localStorage.getItem('iden')){
           this.diagram.loadDiagram(data.data);
         }
@@ -307,7 +319,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   x : number;
   ngAfterViewInit(): void {
 
-    this.editorService.initConnection('55');
+    this.editorService.initConnection(this.u.uid,this.diagram_id);
 
     this.diagram.textEdit.subscribe(data=>{
       this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'),'');
@@ -339,7 +351,16 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   openDialog(x:string) {
 
     if(x=='chat'){
-      const dialogRef = this.dialog.open(ChatUsuariosComponent);
+      let dialogRef = this.dialog.open(ChatUsuariosComponent,{
+        data : {
+          user: this.u,
+          room: this.diagram_id
+        }
+      });
+
+      const sub = dialogRef.componentInstance.onSendMessage.subscribe(() => {
+         console.log('mensaje enviado');
+      });
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);

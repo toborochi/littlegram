@@ -29,7 +29,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { ChatUsuariosComponent } from './componentes/chat-usuarios/chat-usuarios.component';
-import { ChatComponentComponent } from './componentes/chat-core/chat-component/chat-component.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EditorComponent } from './componentes/editor/editor.component';
@@ -60,7 +59,6 @@ var config_firebase = {
     AppComponent,
     ListaUsuariosComponent,
     ChatUsuariosComponent,
-    ChatComponentComponent,
     InicioComponent,
     EditorComponent,
     DashboardComponent,

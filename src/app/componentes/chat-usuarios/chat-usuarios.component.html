@@ -6,6 +6,42 @@
     </mat-icon>
   </button>
 </div>
-<mat-dialog-content style="width: 640px" class="mat-typography">
-<app-chat-component></app-chat-component>
+<mat-dialog-content style="width: 520px" class="mat-typography">
+
+  <div class="chat-container ">
+    <mat-card class="main-card mat-elevation-z0">
+      <mat-list class="chat-list">
+        <mat-list-item  *ngFor="let message of messages" [ngClass]="[(message.action === undefined && message.from.uid === user.uid)? 'chat-list-item': '']">
+          <img mat-list-avatar *ngIf="message.action === undefined" [src]="message.from.photoURL">
+          <h4 mat-line *ngIf="message.action === undefined">
+            <b>{{message.from.displayName}}</b>
+          </h4>
+          <div mat-line style="white-space: normal;" *ngIf="message.action === undefined">
+            <span  >{{message.content}} </span>
+          </div>
+          <p mat-line *ngIf="message.action === action.JOINED" class="chat-notification">
+            <span translate> <b>{{message.from.displayName}}</b> joined to the conversation. </span>
+          </p>
+          <p mat-line *ngIf="message.action === action.RENAME" class="chat-notification">
+            <span translate> <b>{{message.content.previousUsername}}</b> is now <b>{{message.content.username}}</b> </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+      <div class="chat-footer-container">
+        <mat-icon style="padding-right: 10px" >message</mat-icon>
+        <mat-form-field class="chat-input">
+          <input matInput
+                 autocomplete="off"
+                 #inputMessage
+                 maxlength="140"
+                 placeholder="{{'Escriba su mensaje'}}"
+                 [(ngModel)]="messageContent"
+                 (keyup.enter)="sendMessage(messageContent)">
+          <mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
+        </mat-form-field>
+      </div>
+
+    </mat-card>
+  </div>
+
 </mat-dialog-content>

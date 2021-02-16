@@ -18,9 +18,10 @@ export class EditorService {
     });
   }
 
-  initConnection(user: string) {
-    this.socket.emit('entrante', {
+  initConnection(user: string,id:string) {
+    this.socket.emit('enter-room', {
       usuario: user,
+      diagrama_id : id
     });
   }
 
