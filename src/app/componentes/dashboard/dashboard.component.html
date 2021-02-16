@@ -1,12 +1,14 @@
 
   <mat-drawer-container fxFill >
     <mat-drawer mode="side" opened class="mat-drawer-side">
-      <img  style="width: 100%;" src="assets/lilg_blue.svg">
+      <img style="width: 100%;" src="assets/lilg_blue.svg">
       <button (click)="openDialog()" style="width: 100%; margin-top: 20px"  mat-raised-button color="primary">Crear Diagrama</button>
     </mat-drawer>
     <mat-drawer-content style="background-color: #2196F3">
       <mat-toolbar color="accent">
-        <span>Bienvenido Leonardo!</span>
+        <img style="height: 75%;border-radius: 50%;"  mat-list-avatar [src]="photoUrl">
+        <div style="width: 10px"></div>
+        <span>Bienvenido{{ getUserName() }}!</span>
         <span class="spacer"></span>
         <button (click)="closeSesion()" mat-stroked-button >Cerrar Sesión</button>
       </mat-toolbar>
@@ -16,7 +18,7 @@
         <mat-list-item *ngFor="let folder of folders">
           <img mat-list-avatar src="https://karmaburn.com/files/screenshots/carnival_phantasm/saber0802.jpg">
           <div mat-line>{{folder.name}} (Creado por: Leonardo Añez)</div>
-          <div mat-line> {{folder.updated | date}} </div>
+          <div mat-line> {{folder.date_create | date}} </div>
            <div>
              <mat-button-toggle-group class="toggle-custom" fxLayout="row" fxLayoutAlign="start stretch"
                [disabled]="disabled" [appearance]="appearance">

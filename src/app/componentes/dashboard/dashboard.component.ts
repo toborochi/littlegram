@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {NuevoDiagramaComponent} from '../dialogos/nuevo-diagrama/nuevo-diagrama.component';
 import {MatButtonToggleAppearance} from '@angular/material/button-toggle';
@@ -6,61 +6,52 @@ import { faDownload,faEye } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../servicios/auth/auth.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {DashboardService} from '../../servicios/dashboard/dashboard.service';
+import {Diagrama} from '../../modelos/diagrama';
+import firebase from 'firebase';
+import User = firebase.User;
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit,AfterViewInit {
+
+  u : User = JSON.parse(localStorage.getItem('user'));
+
+  ngAfterViewInit(): void {
+    this.dashboardService.listarDiagram(this.u.uid).subscribe(d=> {
+      this.folders = d.data.lista;
+    });
+  }
 
   download_icon= faDownload;
   eye_icon= faEye;
-  folders: any[] = [
-    {
-      name: 'Estructuras de Datos',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Estructuras de Datos',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Introducción a la Informática',
-      updated: new Date('1/28/16'),
-    },
-    {
-      name: 'Estructuras de Datos',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Estructuras de Datos',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Introducción a la Informática',
-      updated: new Date('1/28/16'),
-    },
-    {
-      name: 'Estructuras de Datos',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Estructuras de Datos',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Introducción a la Informática',
-      updated: new Date('1/28/16'),
-    }
-  ];
+  folders: Diagrama[] = [];
 
   disabled = false;
   appearance: MatButtonToggleAppearance = 'standard';
   constructor(public dialog: MatDialog,
-              private  authService:  AuthService) { }
+              private dashboardService: DashboardService,
+              private authService :AuthService) {
+  }
 
   ngOnInit(): void {
+    this.u  = JSON.parse(localStorage.getItem('user'));
+
+  }
+
+
+  get photoUrl() :string{
+
+    return ((this.u)?this.u.photoURL : "");
+  }
+
+  getUserName():string{
+    if(this.u){
+      return " "+this.u.displayName;
+    }
+    return "";
   }
 
   openDialog(){

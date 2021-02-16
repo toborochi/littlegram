@@ -1,0 +1,7 @@
+.box-texto {
+  border-radius: 8px;
+  background: #73AD21;
+  padding: 8px;
+  width: 100%;
+  flex: auto;
+}

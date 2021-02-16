@@ -18,8 +18,13 @@
   </mat-form-field>
   </form>
   <button (click)="goEditor()" style="width: 100%;" mat-raised-button color="primary">
-
     Crear
-
   </button>
+  <mat-divider></mat-divider>
+  <div style="width: 100%;
+              border: 16px;
+              border-radius: 8px;
+              background: #73AD21;" *ngIf="message!=null">
+    Mostrar {{message}}
+  </div>
 </mat-dialog-content>

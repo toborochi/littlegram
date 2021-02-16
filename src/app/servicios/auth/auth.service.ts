@@ -13,6 +13,7 @@ export class AuthService {
   user: User;
 
   constructor(public  afAuth:  AngularFireAuth , public  router:  Router) {
+
     this.afAuth.authState.subscribe(user => {
       if (user){
         this.user = user;
@@ -23,10 +24,16 @@ export class AuthService {
     })
   }
 
+  get currentUser(){
+    return this.afAuth.authState;
+  }
+
+
   async login(email: string, password: string,spinner : NgxSpinnerService) {
     spinner.show();
     var result = await this.afAuth.signInWithEmailAndPassword(email, password).then(
-      ()=>{
+      (c)=>{
+        localStorage.setItem('user', JSON.stringify(c.user));
         this.router.navigateByUrl('/dashboard');
         spinner.hide();
       },
@@ -37,12 +44,15 @@ export class AuthService {
   }
 
   async register(name: string, email: string, password: string,spinner : NgxSpinnerService) {
+
+    let splitted = name.split(" ", 1);
+
     spinner.show()
     var result = await this.afAuth.createUserWithEmailAndPassword(email, password).then(
       userData=>{
         userData.user.updateProfile({
           displayName: name,
-          photoURL: ''
+          photoURL: `https://avatar.oxro.io/avatar.svg?name=${splitted[0]}`
         });
         this.sendEmailVerification(spinner);
       },
