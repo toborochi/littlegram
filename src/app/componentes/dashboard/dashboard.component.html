@@ -6,7 +6,7 @@
     </mat-drawer>
     <mat-drawer-content style="background-color: #2196F3">
       <mat-toolbar color="accent">
-        <img style="height: 75%;border-radius: 50%;"  mat-list-avatar [src]="photoUrl">
+        <img style="height: 66%;border-radius: 50%;"  mat-list-avatar [src]="photoUrl">
         <div style="width: 10px"></div>
         <span>Bienvenido{{ getUserName() }}!</span>
         <span class="spacer"></span>
@@ -17,8 +17,8 @@
         <div mat-subheader>Diagramas</div>
         <mat-list-item *ngFor="let folder of folders">
           <img mat-list-avatar src="https://karmaburn.com/files/screenshots/carnival_phantasm/saber0802.jpg">
-          <div mat-line>{{folder.name}} (Creado por: Leonardo Añez)</div>
-          <div mat-line> {{folder.date_create | date}} </div>
+          <div mat-line>{{folder.name}}</div>
+          <div mat-line> {{folder.date_create * 1000 | date:'dd/MM/yyyy(EEE) - hh:mmaaa'}} </div>
            <div>
              <mat-button-toggle-group class="toggle-custom" fxLayout="row" fxLayoutAlign="start stretch"
                [disabled]="disabled" [appearance]="appearance">

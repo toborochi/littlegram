@@ -4,6 +4,6 @@ export interface Diagrama {
   name: string,
   asignment: string,
   data: any,
-  date_create: string,
-  date_closed: string,
+  date_create: number,
+  date_closed: number,
 }

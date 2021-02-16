@@ -55,7 +55,12 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   }
 
   openDialog(){
-    this.dialog.open(NuevoDiagramaComponent);
+    this.dialog.open(NuevoDiagramaComponent).afterClosed().subscribe(()=>{
+      console.log('CERRADO');
+      this.dashboardService.listarDiagram(this.u.uid).subscribe(d=> {
+        this.folders = d.data.lista;
+      });
+    });
 
 
   }
