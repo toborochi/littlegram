@@ -16,7 +16,7 @@ export class AuthService {
 
     this.afAuth.authState.subscribe(user => {
       if (user){
-        this.user = user;
+
         localStorage.setItem('user', JSON.stringify(this.user));
       } else {
         localStorage.setItem('user', null);
@@ -54,6 +54,14 @@ export class AuthService {
           displayName: name,
           photoURL: `https://avatar.oxro.io/avatar.svg?name=${splitted[0]}`
         });
+
+        console.log(name,'-');
+        let s : string =  JSON.stringify(userData.user);
+        let u : User = JSON.parse(s);
+        u.displayName=name;
+        u.photoURL = `https://avatar.oxro.io/avatar.svg?name=${splitted[0]}`;
+        localStorage.setItem('user', JSON.stringify(u));
+        this.user = u;
         this.sendEmailVerification(spinner);
       },
       ()=>{
