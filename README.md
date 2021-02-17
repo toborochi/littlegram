@@ -1,6 +1,7 @@
-# SyncDiagram
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+
+![](littlegram_logo.svg)
+
 
 ## Development server
 

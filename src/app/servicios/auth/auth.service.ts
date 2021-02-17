@@ -16,7 +16,7 @@ export class AuthService {
 
     this.afAuth.authState.subscribe(user => {
       if (user){
-
+        this.user = JSON.parse(localStorage.getItem('user'));
         localStorage.setItem('user', JSON.stringify(this.user));
       } else {
         localStorage.setItem('user', null);

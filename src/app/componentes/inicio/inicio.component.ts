@@ -39,7 +39,7 @@ export class InicioComponent implements OnInit {
 
     this.authService.register(
       this.registerForm.value.name,
-      this.registerForm.value.email,
+      this.registerForm.value.email.split(" ", 1)[0],
       this.registerForm.value.pass,
       this.spinner
       );
@@ -50,7 +50,7 @@ export class InicioComponent implements OnInit {
     console.log(this.loginForm.value);
     console.log(this.isChecked);
     this.authService.login(
-      this.loginForm.value.email,
+      this.loginForm.value.email.split(" ", 1)[0],
       this.loginForm.value.pass,
       this.spinner
     );
