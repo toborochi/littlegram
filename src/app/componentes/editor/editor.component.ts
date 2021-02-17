@@ -328,15 +328,16 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
     this.chatService.loadChat.subscribe(data=>{
 
       this.messages = data.chat_array;
-      //console.log('Chat Inicial: ',data.chat_array);
-      this.diagram.loadDiagram(data.diagram);
+      if(data.diagram){
+        this.diagram.loadDiagram(data.diagram);
+      }
+
     });
 
   }
 
   ngOnDestroy(): void {
     console.log('DESTROY');
-    this.chatService.leaveChat(this.diagram_id);
     this._diagrama.unsubscribe();
     this.chat.unsubscribe();
   }
