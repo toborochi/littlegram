@@ -14,13 +14,13 @@
         <mat-list-item  *ngFor="let message of messages" [ngClass]="[(message.action === undefined && message.from.uid === user.uid)? 'chat-list-item': '']">
           <img mat-list-avatar *ngIf="message.action === undefined" [src]="message.from.photoURL">
           <h4 mat-line *ngIf="message.action === undefined">
-            <b>{{message.from.displayName}}</b>
+            <b>{{username(message.from.uid)}}</b>
           </h4>
           <div mat-line style="white-space: normal;" *ngIf="message.action === undefined">
             <span  >{{message.content}} </span>
           </div>
           <p mat-line *ngIf="message.action === action.JOINED" class="chat-notification">
-            <span translate> <b>{{message.from.displayName}}</b> joined to the conversation. </span>
+            <span translate> <b>{{username(message.from.uid)}}</b> joined to the conversation. </span>
           </p>
           <p mat-line *ngIf="message.action === action.RENAME" class="chat-notification">
             <span translate> <b>{{message.content.previousUsername}}</b> is now <b>{{message.content.username}}</b> </span>
