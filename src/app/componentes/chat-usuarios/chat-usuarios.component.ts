@@ -42,8 +42,6 @@ export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
   messages: Message[] = [];
   messageContent: string;
 
-  storedUserName: string;
-
   private initModel(): void {
   }
 
@@ -53,23 +51,19 @@ export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
 
     console.log(message);
 
-
-
     if (!message) {
       return;
     }
 
-    this.onSendMessage.emit();
+    this.onSendMessage.emit(message);
     this.chatService.sendMessage(this.user,this.room,message);
 
-    let usr : string = 'Leonardo Añez';
-    let splitted = usr.split(" ", 2);
-
+    /*
     this.messages.push({
       from: this.user,
       action: undefined,
       content: message
-    });
+    });*/
 
     this.messageContent = null;
   }
@@ -89,16 +83,20 @@ export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
                private chatService: ChatService) {
       this.user = data.user;
       this.room = data.room;
+      this.messages = data.messages;
   }
 
   ngOnInit(): void {
+    this.messages = new Array();
     console.log('Iniciando Chat');
     this.chat = this.chatService.currentChat.subscribe(data=>{
+      console.log('Recibiendo Mensajes ',data);
       this.messages.push({
         from: data.usuario,
         action: undefined,
         content: data.mensaje
       });
+      console.log(this.messages.length);
     });
 
     this.initModel();

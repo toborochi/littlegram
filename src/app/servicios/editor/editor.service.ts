@@ -20,7 +20,7 @@ export class EditorService {
     });
   }
 
-  initConnection(user: string,id:string) {
+  initConnection(user: User,id:string) {
     this.socket.emit('enter-room', {
       usuario: user,
       diagrama_id : id

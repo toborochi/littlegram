@@ -17,7 +17,7 @@ import {
 } from '@syncfusion/ej2-diagrams';
 import {ExpandMode} from '@syncfusion/ej2-navigations';
 import {paletteIconClick} from '../../../scripts/diagram-common';
-import {ChatUsuariosComponent} from '../chat-usuarios/chat-usuarios.component';
+import {ChatUsuariosComponent, Message} from '../chat-usuarios/chat-usuarios.component';
 import {ListaUsuariosComponent} from '../lista-usuarios/lista-usuarios.component';
 import { faQuestion,faComments,faFolderOpen,faKey,faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -33,6 +33,7 @@ import User = firebase.User;
 })
 export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
+  messages: Message[] = [];
   u : User = JSON.parse(localStorage.getItem('user'));
   pregunta_icon = faQuestion;
   chat_icon = faComments;
@@ -349,7 +350,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
   ngAfterViewInit(): void {
 
-    this.editorService.initConnection(this.u.uid,this.diagram_id);
+    this.editorService.initConnection(this.u,this.diagram_id);
 
   }
 
@@ -378,8 +379,10 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
         }
       });
 
-      const sub = dialogRef.componentInstance.onSendMessage.subscribe(() => {
-         console.log('mensaje enviado');
+      const sub = dialogRef.componentInstance.onSendMessage.subscribe((d) => {
+         console.log(`Datos ${d}`);
+         this.messages = d;
+
       });
 
       dialogRef.afterClosed().subscribe(result => {
