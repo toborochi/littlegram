@@ -9,6 +9,7 @@ import User = firebase.User;
 export class EditorService {
 
   currentDiagram = this.socket.fromEvent<any>('update-diagram');
+  firstDiagram = this.socket.fromEvent<any>('get-diagram');
 
   constructor(private socket: Socket) { }
 

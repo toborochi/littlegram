@@ -35,7 +35,7 @@ import {ChatService} from '../../servicios/chat/chat.service';
 })
 export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
-  messages: Message[] = [];
+  messages: Message[] = new Array();
   u : User = JSON.parse(localStorage.getItem('user'));
   pregunta_icon = faQuestion;
   chat_icon = faComments;
@@ -298,6 +298,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   }
 
   chat:Subscription;
+  diagramInit: Subscription;
 
 
   ngOnInit(): void {
@@ -308,11 +309,11 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
     console.log(this.diagram_id);
 
       this._diagrama = this.editorService.currentDiagram.subscribe(data=>{
-        //console.log(data.usuario);
         if(data.usuario && data.data){
           this.diagram.loadDiagram(data.data);
         }
       });
+
 
     this.chat = this.chatService.currentChat.subscribe(data=>{
       console.log('Recibiendo Mensajes ',data);
@@ -327,7 +328,8 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
     this.chatService.loadChat.subscribe(data=>{
 
       this.messages = data.chat_array;
-      console.log('Chat Inicial: ',data.chat_array);
+      //console.log('Chat Inicial: ',data.chat_array);
+      this.diagram.loadDiagram(data.diagram);
     });
 
   }

@@ -26,7 +26,7 @@ const AVATAR_URL = 'https://pbs.twimg.com/profile_images/609439993094770690/Mqfz
 export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
   ngOnDestroy(): void {
     console.log('Cerrando Chat');
-    this.chat.unsubscribe();
+    //this.chat.unsubscribe();
     //this.chatService.leaveChat(this.room);
   }
 
