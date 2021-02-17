@@ -11,8 +11,9 @@ import {
   SnapSettingsModel,
   SymbolInfo,
   IHistoryChangeArgs,
-  IPropertyChangeEventArgs,
-  ICollectionChangeEventArgs
+  IDropEventArgs,
+  ICollectionChangeEventArgs,
+  IDragLeaveEventArgs
 } from '@syncfusion/ej2-diagrams';
 import {ExpandMode} from '@syncfusion/ej2-navigations';
 import {paletteIconClick} from '../../../scripts/diagram-common';
@@ -319,40 +320,36 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   x : number;
 
   colChange(e:ICollectionChangeEventArgs){
-    console.log(this.diagram.nodes.length);
+    console.log('COLCHANGE');
     this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
   }
 
 
-  async updateState(e: IHistoryChangeArgs){
-    await this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+   updateState(e: IHistoryChangeArgs){
+     console.log('UPDATE');
+    this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
   }
+
+   dropEvent(e:IDropEventArgs){
+     console.log('DROP');
+    this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+  }
+
+   dragLeave(e:IDragLeaveEventArgs){
+    console.log('DRAG');
+    this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+  }
+
+  generic(e){
+    this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+  }
+
 
 
 
   ngAfterViewInit(): void {
 
     this.editorService.initConnection(this.u.uid,this.diagram_id);
-
-    /*
-    this.diagram.textEdit.subscribe(data=>{
-      console.log(data);
-      console.log(this.diagram);
-      console.log('Cambio ',this.diagram.nodes.length);
-      this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
-    },()=>{},(d)=>{
-      console.log('terminado ',d);
-    });
-    */
-
-    /*
-    this.diagram.historyChange.subscribe(data=>{
-      console.log(data);
-      console.log('Cambio ',this.diagram.nodes.length);
-      this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram())
-    },()=>{},(d)=>{
-      console.log('terminado ',d);
-    });*/
 
   }
 
