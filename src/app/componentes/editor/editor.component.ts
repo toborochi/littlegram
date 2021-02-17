@@ -13,7 +13,8 @@ import {
   IHistoryChangeArgs,
   IDropEventArgs,
   ICollectionChangeEventArgs,
-  IDragLeaveEventArgs
+  IDragLeaveEventArgs,
+  IClickEventArgs
 } from '@syncfusion/ej2-diagrams';
 import {ExpandMode} from '@syncfusion/ej2-navigations';
 import {paletteIconClick} from '../../../scripts/diagram-common';
@@ -25,6 +26,7 @@ import {EditorService} from '../../servicios/editor/editor.service';
 import {Subscription} from 'rxjs';
 import firebase from 'firebase';
 import User = firebase.User;
+import {ChatService} from '../../servicios/chat/chat.service';
 
 @Component({
   selector: 'app-editor',
@@ -55,6 +57,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   constructor(public dialog: MatDialog,
               private router: Router,
               private editorService: EditorService,
+              private chatService: ChatService,
               private route: ActivatedRoute) {}
 
 
@@ -294,7 +297,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
     this.diagram.fitToPage();
   }
 
-
+  chat:Subscription;
 
 
   ngOnInit(): void {
@@ -311,10 +314,27 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
         }
       });
 
+    this.chat = this.chatService.currentChat.subscribe(data=>{
+      console.log('Recibiendo Mensajes ',data);
+      this.messages.push({
+        from: data.from,
+        action: undefined,
+        content: data.content
+      });
+      console.log(this.messages.length);
+    });
+
+    this.chatService.loadChat.subscribe(data=>{
+
+      this.messages = data.chat_array;
+      console.log('Chat Inicial: ',data.chat_array);
+    });
+
   }
 
   ngOnDestroy(): void {
     this._diagrama.unsubscribe();
+    this.chat.unsubscribe();
   }
 
 
@@ -352,6 +372,8 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
     this.editorService.initConnection(this.u,this.diagram_id);
 
+
+
   }
 
   data:string;
@@ -375,14 +397,13 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
       let dialogRef = this.dialog.open(ChatUsuariosComponent,{
         data : {
           user: this.u,
-          room: this.diagram_id
+          room: this.diagram_id,
+          messages: this.messages
         }
       });
 
       const sub = dialogRef.componentInstance.onSendMessage.subscribe((d) => {
-         console.log(`Datos ${d}`);
-         this.messages = d;
-
+        this.messages = d;
       });
 
       dialogRef.afterClosed().subscribe(result => {

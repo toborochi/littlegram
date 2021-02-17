@@ -10,7 +10,11 @@ export class ChatService {
 
   currentChat = this.socket.fromEvent<any>('new-message');
 
+  loadChat = this.socket.fromEvent<any>('get-chat');
+
   constructor(private socket: Socket) { }
+
+
 
   leaveChat(room:string){
     this.socket.emit('leave-room',{
