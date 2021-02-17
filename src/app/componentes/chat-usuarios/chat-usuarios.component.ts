@@ -15,6 +15,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import firebase from 'firebase';
 import User = firebase.User;
 import {ChatService} from '../../servicios/chat/chat.service';
+import {Observable, Subscription} from 'rxjs';
 const AVATAR_URL = 'https://pbs.twimg.com/profile_images/609439993094770690/MqfzEbtj.jpg';
 
 @Component({
@@ -24,7 +25,9 @@ const AVATAR_URL = 'https://pbs.twimg.com/profile_images/609439993094770690/Mqfz
 })
 export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
   ngOnDestroy(): void {
-    this.chatService.leaveChat(this.room);
+    console.log('Cerrando Chat');
+    this.chat.unsubscribe();
+    //this.chatService.leaveChat(this.room);
   }
 
   onSendMessage = new EventEmitter();
@@ -80,6 +83,7 @@ export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
 
   user:User;
   room:string;
+  chat : Subscription;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any,
                private chatService: ChatService) {
@@ -88,9 +92,8 @@ export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
   }
 
   ngOnInit(): void {
-
-    this.chatService.currentChat.subscribe(data=>{
-
+    console.log('Iniciando Chat');
+    this.chat = this.chatService.currentChat.subscribe(data=>{
       this.messages.push({
         from: data.usuario,
         action: undefined,
@@ -103,6 +106,7 @@ export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
   }
 
   ngAfterViewInit(): void {
+
     this.matListItems.changes.subscribe(elements => {
       this.scrollToBottom();
     });

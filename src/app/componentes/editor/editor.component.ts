@@ -9,7 +9,10 @@ import {
   PaletteModel,
   PointPortModel,
   SnapSettingsModel,
-  SymbolInfo
+  SymbolInfo,
+  IHistoryChangeArgs,
+  IPropertyChangeEventArgs,
+  ICollectionChangeEventArgs
 } from '@syncfusion/ej2-diagrams';
 import {ExpandMode} from '@syncfusion/ej2-navigations';
 import {paletteIconClick} from '../../../scripts/diagram-common';
@@ -284,9 +287,6 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
     }
   }
 
-  public diagramCreate(args: Object): void {
-    paletteIconClick();
-  }
 
   public created(): void {
     this.diagram.fitToPage();
@@ -304,7 +304,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
       this._diagrama = this.editorService.currentDiagram.subscribe(data=>{
         //console.log(data.usuario);
-        if(data.usuario && data.data && data.usuario!=localStorage.getItem('iden')){
+        if(data.usuario && data.data){
           this.diagram.loadDiagram(data.data);
         }
       });
@@ -317,20 +317,43 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
 
   x : number;
+
+  colChange(e:ICollectionChangeEventArgs){
+    console.log(this.diagram.nodes.length);
+    this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+  }
+
+
+  async updateState(e: IHistoryChangeArgs){
+    await this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+  }
+
+
+
   ngAfterViewInit(): void {
 
     this.editorService.initConnection(this.u.uid,this.diagram_id);
 
+    /*
     this.diagram.textEdit.subscribe(data=>{
-      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'),'');
+      console.log(data);
+      console.log(this.diagram);
+      console.log('Cambio ',this.diagram.nodes.length);
+      this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+    },()=>{},(d)=>{
+      console.log('terminado ',d);
     });
+    */
 
+    /*
     this.diagram.historyChange.subscribe(data=>{
+      console.log(data);
+      console.log('Cambio ',this.diagram.nodes.length);
+      this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram())
+    },()=>{},(d)=>{
+      console.log('terminado ',d);
+    });*/
 
-      this.editorService.editDiagram(this.diagram.saveDiagram(),localStorage.getItem('iden'),'');
-    });
-
-    //this.diagram.height=this.elementView.nativeElement.offsetHeight;
   }
 
   data:string;
