@@ -9,8 +9,8 @@
 </button>
 </div>
 <mat-dialog-content class="mat-typography">
-  <mat-selection-list #shoes>
-    <mat-list-option style="width: 420px" *ngFor="let shoe of typesOfShoes">
+  <mat-selection-list  [multiple]="false" #shoes>
+    <mat-list-option  style="width: 420px" *ngFor="let shoe of typesOfShoes">
       {{shoe}}
     </mat-list-option>
   </mat-selection-list>

@@ -71,8 +71,10 @@
                      (historyChange)="updateState($event)"
                      [getConnectorDefaults]='connDefaults'
                      [snapSettings]='snapSettings'
-                     (onUserHandleMouseUp)="generic($event)"
-                     (click)="generic($event)"
+                     (onUserHandleMouseUp)="mouseUp($event)"
+                     (click)="clicked($event)"
+                     (selectionChange)="selection($event)"
+
 
                      height="650px"
                      id="diagram"

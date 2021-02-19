@@ -6,7 +6,7 @@
     </mat-icon>
   </button>
 </div>
-<mat-dialog-content style="width: 240px" class="mat-typography">
+<mat-dialog-content style="width: 320px" class="mat-typography">
   <form class="menu-form" [formGroup]="createDiagramForm">
   <mat-form-field  appearance="outline" style="width: 100%" >
     <mat-label>Materia</mat-label>
@@ -23,14 +23,20 @@
   <mat-divider></mat-divider>
 
   <mat-card style="margin-top: 8px;margin-bottom: 8px; background-color: #d3e5f3" class="mat-elevation-z0" *ngIf="message!=null">
-    {{message}}
-    <mat-card-content>
-      xx
+
+    <mat-card-content style="margin-bottom: 0px" fxLayoutGap="4px" fxLayout="row" fxLayoutAlign="space-between center" >
+      <div>
+        {{message}}
+      </div>
+      <button mat-icon-button >
+        <mat-icon>file_copy</mat-icon>
+      </button>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions >
       <button (click)="editor()" style="width: 100%;" mat-raised-button color="primary">
         Ir al Editor
       </button>
+
     </mat-card-actions>
   </mat-card>
 </mat-dialog-content>

@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {DiagramComponent, IExportOptions, PortVisibility, SymbolPaletteComponent} from '@syncfusion/ej2-angular-diagrams';
 import {MatDialog} from '@angular/material/dialog';
+import * as _ from 'lodash';
 import {
   Connector,
   ConnectorModel, IDragEnterEventArgs,
@@ -14,7 +15,10 @@ import {
   IDropEventArgs,
   ICollectionChangeEventArgs,
   IDragLeaveEventArgs,
-  IClickEventArgs
+  IClickEventArgs,
+  SelectorModel,
+  ISelectionChangeEventArgs,
+
 } from '@syncfusion/ej2-diagrams';
 import {ExpandMode} from '@syncfusion/ej2-navigations';
 import {paletteIconClick} from '../../../scripts/diagram-common';
@@ -315,6 +319,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
       });
 
 
+
     this.chat = this.chatService.currentChat.subscribe(data=>{
       console.log('Recibiendo Mensajes ',data);
       this.messages.push({
@@ -346,28 +351,65 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   x : number;
 
   colChange(e:ICollectionChangeEventArgs){
-    console.log('COLCHANGE');
+    //console.log('COLCHANGE');
+    //console.log(e.cause);
     this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
   }
 
 
    updateState(e: IHistoryChangeArgs){
-     console.log('UPDATE');
+     // @ts-ignore
+     //console.log(e.change.type);
+     /*
+     e.source.forEach(data=>{
+       console.log(data.id);
+     })*/
     this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
   }
 
    dropEvent(e:IDropEventArgs){
-     console.log('DROP');
+     //console.log('DROP');
     this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
   }
 
    dragLeave(e:IDragLeaveEventArgs){
-    console.log('DRAG');
+    //console.log('DRAG');
     this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
   }
 
-  generic(e){
+  clicked(e:IClickEventArgs){
     this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
+  }
+
+  addNode(){
+
+    var deep : NodeModel = _.cloneDeep<NodeModel>(this.flowshapes[0]);
+    this.diagram.addNode(deep);
+    console.log(this.diagram.nodes.length);
+  }
+
+  selection(e:ISelectionChangeEventArgs){
+    console.log("SELECTION");
+
+    /*
+    e.newValue.forEach(data=>{
+
+      let n : NodeModel | ConnectorModel = data
+
+      if(n instanceof Connector){
+        let x = n as ConnectorModel;
+        console.log(x.sourcePoint.x,'-',x.targetPoint.y);
+      }else{
+        let x = n as NodeModel;
+        console.log(x);
+      }
+
+      //console.log(`Nodo ${n.id} seleccionado`);
+    })*/
+  }
+
+  mouseUp(e){
+
   }
 
 
