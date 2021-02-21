@@ -37,7 +37,7 @@ export class EditorService {
 
   updateDiagram(diagrama_id:string,doc: string,o:string):Observable<any> {
     console.log(`Actualizando ${diagrama_id}`);
-    return this.http.post<any>('http://localhost:3000/api/diagupdate',{
+    return this.http.post<any>(this.serverUrl+'/diagupdate',{
         id: diagrama_id,
         data : doc,
         owner: o
