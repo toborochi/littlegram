@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {DiagramComponent, IExportOptions, PortVisibility, SymbolPaletteComponent} from '@syncfusion/ej2-angular-diagrams';
+import {DiagramComponent, IExportOptions, PortVisibility, SymbolPaletteComponent, DiagramConstraints} from '@syncfusion/ej2-angular-diagrams';
 import {MatDialog} from '@angular/material/dialog';
 import * as _ from 'lodash';
 import {
@@ -31,6 +31,8 @@ import {Subscription} from 'rxjs';
 import firebase from 'firebase';
 import User = firebase.User;
 import {ChatService} from '../../servicios/chat/chat.service';
+import {IntroDialogoComponent} from '../dialogos/intro-dialogo/intro-dialogo.component';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-editor',
@@ -62,7 +64,8 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
               private router: Router,
               private editorService: EditorService,
               private chatService: ChatService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private spinner: NgxSpinnerService) {}
 
 
   private connectorSymbols: ConnectorModel[] = [
@@ -343,6 +346,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
   ngOnDestroy(): void {
     console.log('DESTROY');
+    this.spinner.hide();
     this._diagrama.unsubscribe();
     this.chat.unsubscribe();
   }
@@ -417,8 +421,15 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
   ngAfterViewInit(): void {
 
+    this.diagram.selectedItems = {};
+    let d = this.diagram.saveDiagram();
+    this.editorService.updateDiagram(this.diagram_id,d,this.u.uid).subscribe(r=>{
+      console.log(r.data);
+      if(r.data.edit==false){
+        this.spinner.show();
+      }
+    });
     this.editorService.initConnection(this.u,this.diagram_id);
-
 
 
   }

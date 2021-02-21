@@ -1,3 +1,5 @@
+
+
 <script src="script/diagram-common.ts"></script>
 <style>
   .e-symbolpalette {
@@ -6,7 +8,7 @@
 </style>
 
 
-<mat-toolbar style="padding-left: 0px" color="primary">
+<mat-toolbar style="padding-left: 0px;z-index: 100000;position: sticky"  color="primary">
   <div class="ripple-back mat-body "
        matRipple (click)="goDashboard()">
     <fa-icon style="padding-left: 4px; padding-right: 4px" size="2x" [icon]="volver_icon"></fa-icon>
@@ -48,7 +50,13 @@
   -->
 
 </mat-toolbar>
-
+<ngx-spinner
+  bdColor = "rgba(127,188,255,0.19)"
+  size = "medium"
+  color = "rgba(164,129,129,0)"
+  type = "fire" [fullScreen] = "true"
+  [zIndex]="1000"
+></ngx-spinner>
 
 <div class="control-section" #angcard style="height: calc(100% - 64px)">
   <div style="width: 100%">

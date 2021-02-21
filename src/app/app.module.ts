@@ -41,6 +41,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { HttpClientModule } from '@angular/common/http';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 import { NgxSpinnerModule } from "ngx-spinner";
+import { IntroDialogoComponent } from './componentes/dialogos/intro-dialogo/intro-dialogo.component';
 
 var config_firebase = {
   apiKey: "AIzaSyC_KBHVE5Ba_NOHaPS4_GzbR3X5qrOKCYs",
@@ -62,7 +63,8 @@ var config_firebase = {
     InicioComponent,
     EditorComponent,
     DashboardComponent,
-    NuevoDiagramaComponent
+    NuevoDiagramaComponent,
+    IntroDialogoComponent
   ],
   imports: [
     BrowserModule,
