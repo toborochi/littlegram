@@ -42,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 import { NgxSpinnerModule } from "ngx-spinner";
 import { IntroDialogoComponent } from './componentes/dialogos/intro-dialogo/intro-dialogo.component';
+import { DiagramViewerComponent } from './componentes/diagram-viewer/diagram-viewer.component';
 
 var config_firebase = {
   apiKey: "AIzaSyC_KBHVE5Ba_NOHaPS4_GzbR3X5qrOKCYs",
@@ -64,7 +65,8 @@ var config_firebase = {
     EditorComponent,
     DashboardComponent,
     NuevoDiagramaComponent,
-    IntroDialogoComponent
+    IntroDialogoComponent,
+    DiagramViewerComponent
   ],
   imports: [
     BrowserModule,

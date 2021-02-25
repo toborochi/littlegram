@@ -9,6 +9,7 @@ import {DashboardService} from '../../servicios/dashboard/dashboard.service';
 import {Diagrama} from '../../modelos/diagrama';
 import firebase from 'firebase';
 import User = firebase.User;
+import {DiagramViewerComponent} from '../diagram-viewer/diagram-viewer.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -65,16 +66,28 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
   }
 
-  downloadImage(data:string){
+  async downloadImage(data:string){
     console.log(data);
     if(data){
     let dc = new Diagram();
     let x : IExportOptions = {
       format: 'PNG',
-      fileName: 'imagen',
+      fileName: 'diagram',
 
     };
-    dc.exportDiagram(x);
+
+
+    let ref = await this.dialog.open(DiagramViewerComponent,{
+      data : {
+        diagrama: data
+      }
+    });
+    ref.afterClosed().subscribe(()=>{
+
+    });
+    //dc.views = ['main'];
+    //dc.loadDiagram(data);
+    //dc.createSvg('XX',500,500);
     }
   }
 

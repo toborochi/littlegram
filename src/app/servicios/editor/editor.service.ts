@@ -43,7 +43,4 @@ export class EditorService {
         owner: o
     });
   }
-
-
-
 }

@@ -345,6 +345,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
+
     console.log('DESTROY');
     this.spinner.hide();
     this._diagrama.unsubscribe();
@@ -357,6 +358,8 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
   colChange(e:ICollectionChangeEventArgs){
     //console.log('COLCHANGE');
     //console.log(e.cause);
+    console.log(this.diagram.nodes);
+    console.log(this.diagram.connectors);
     this.editorService.editDiagram(this.u,this.diagram_id,this.diagram.saveDiagram());
   }
 
@@ -444,7 +447,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
       fileName: 'imagen',
 
     };
-    this.diagram.exportDiagram(x);
+    this.diagram.exportDiagram({mode:'Download'});
 
 
   }
