@@ -28,7 +28,7 @@
     <button mat-menu-item>Exportar como JSON</button>
     <button mat-menu-item>Guardar Manualmente</button>
   </mat-menu>
-  <div class="ripple-container mat-body "
+  <div class="ripple-container mat-body " *ngIf="isOwner"
        matRipple (click)="openDialog('permisos')">
     <fa-icon style="padding-right: 8px" size="2x" [icon]="llave_icon"></fa-icon>
     Permisos

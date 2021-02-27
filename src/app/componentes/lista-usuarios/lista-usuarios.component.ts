@@ -8,13 +8,15 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class ListaUsuariosComponent implements OnInit,AfterViewInit {
   sala: any[] = [];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    this.sala = this.data.usuarios;
+  }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this.sala = this.data.usuarios;
+
   }
 
 }

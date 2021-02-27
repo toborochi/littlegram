@@ -323,9 +323,10 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
       });
 
     this.editorService.permiso.subscribe(data=>{
-      console.log(data);
+      console.log('PERMISO ASIGNADO');
+      console.log(data.uid);
       console.log(this.u.uid)
-      if(this.u.uid===data.uid){
+      if(!this.isOwner && this.u.uid===data.uid){
         this.spinner.hide();
       }else{
         this.spinner.show();
@@ -436,13 +437,15 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
 
 
+  isOwner : boolean = false;
 
   ngAfterViewInit(): void {
 
     this.diagram.selectedItems = {};
     let d = this.diagram.saveDiagram();
     this.editorService.updateDiagram(this.diagram_id,d,this.u.uid).subscribe(r=>{
-      console.log(r.data);
+      console.log('TIPO',r.data);
+      this.isOwner = r.data.owner;
       if(r.data.edit==false){
         this.spinner.show();
       }
