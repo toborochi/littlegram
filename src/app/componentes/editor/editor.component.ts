@@ -326,7 +326,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
       console.log('PERMISO ASIGNADO');
       console.log(data.uid);
       console.log(this.u.uid)
-      if(!this.isOwner && this.u.uid===data.uid){
+      if(this.u.uid===data.uid){
         this.spinner.hide();
       }else{
         this.spinner.show();
@@ -446,8 +446,8 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
     this.editorService.updateDiagram(this.diagram_id,d,this.u.uid).subscribe(r=>{
       console.log('TIPO',r.data);
       this.isOwner = r.data.owner;
-      if(r.data.edit==false){
-        this.spinner.show();
+      if(r.data.edit===false){
+        this.spinner.show().then();
       }
     });
     this.editorService.initConnection(this.u,this.diagram_id);

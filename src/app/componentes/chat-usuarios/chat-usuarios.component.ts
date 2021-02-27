@@ -110,8 +110,8 @@ export class ChatUsuariosComponent implements OnInit,AfterViewInit,OnDestroy {
     });
   }
 
-  username(id:string){
-    return (this.user.uid===id)?'Tú':this.user.displayName;
+  username(id:string,name:string){
+    return (this.user.uid===id)?'Tú':name;
   }
 
 }
