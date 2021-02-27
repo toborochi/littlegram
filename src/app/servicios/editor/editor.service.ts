@@ -13,11 +13,27 @@ import {environment} from '../../../environments/environment';
 export class EditorService {
 
   currentDiagram = this.socket.fromEvent<any>('update-diagram');
+  listaParticipantes = this.socket.fromEvent<any>('list-participants');
+  permiso = this.socket.fromEvent<any>('permission-updated');
   firstDiagram = this.socket.fromEvent<any>('get-diagram');
+
 
   private serverUrl = environment.api_url;
 
   constructor(private socket: Socket,private http:HttpClient) { }
+
+  participantes(id:string){
+    this.socket.emit('get-participants',{
+      diagrama_id:id
+    })
+  }
+
+  permisoAsignar(user: User,id:string){
+    this.socket.emit('permission-change',{
+        diagrama_id: id,
+        usuario: user
+    });
+  }
 
   editDiagram(user: User,id:string,diagram_data: any) {
     this.socket.emit('edit-diagram', {

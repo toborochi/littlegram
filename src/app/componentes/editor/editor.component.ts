@@ -42,6 +42,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
   messages: Message[] = new Array();
+  sala : any[] = new Array();
   u : User = JSON.parse(localStorage.getItem('user'));
   pregunta_icon = faQuestion;
   chat_icon = faComments;
@@ -335,7 +336,13 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
 
     this.chatService.loadChat.subscribe(data=>{
 
+      if(data.sala){
+        console.log(data.sala);
+        this.sala = data.sala;
+      }
+
       this.messages = data.chat_array;
+
       if(data.diagram){
         this.diagram.loadDiagram(data.diagram);
       }
@@ -471,7 +478,11 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
         console.log(`Dialog result: ${result}`);
       });
     }else{
-      const dialogRef = this.dialog.open(ListaUsuariosComponent);
+      const dialogRef = this.dialog.open(ListaUsuariosComponent,{
+        data:{
+          usuarios: this.sala
+        }
+      });
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);

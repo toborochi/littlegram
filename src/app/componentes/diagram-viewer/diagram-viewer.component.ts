@@ -26,6 +26,7 @@ export class DiagramViewerComponent implements OnInit,AfterViewInit {
     this.diagram.width=800;
     let d  :Diagram = JSON.parse(this.data.diagrama);
     this.diagram.nodes=d.nodes;
+    this.diagram.connectors=d.connectors;
   }
 
 }
