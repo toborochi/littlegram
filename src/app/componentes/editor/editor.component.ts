@@ -322,7 +322,15 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
         }
       });
 
-
+    this.editorService.permiso.subscribe(data=>{
+      console.log(data);
+      console.log(this.u.uid)
+      if(this.u.uid===data.uid){
+        this.spinner.hide();
+      }else{
+        this.spinner.show();
+      }
+    })
 
     this.chat = this.chatService.currentChat.subscribe(data=>{
       console.log('Recibiendo Mensajes ',data);
@@ -485,7 +493,8 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+        console.log(result);
+        this.editorService.permisoAsignar(this.u,this.diagram_id,result.uid);
       });
     }
 

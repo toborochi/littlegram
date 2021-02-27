@@ -28,10 +28,11 @@ export class EditorService {
     })
   }
 
-  permisoAsignar(user: User,id:string){
+  permisoAsignar(user: User,id:string,usr:string){
     this.socket.emit('permission-change',{
         diagrama_id: id,
-        usuario: user
+        usuario: user,
+        usuario_perm:usr
     });
   }
 

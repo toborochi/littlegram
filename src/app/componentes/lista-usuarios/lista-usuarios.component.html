@@ -10,11 +10,11 @@
 </div>
 <mat-dialog-content class="mat-typography chat-container">
   <mat-selection-list  [multiple]="false" #shoes>
-    <mat-list-option  style="width: 420px" *ngFor="let shoe of sala">
+    <mat-list-option  style="width: 420px" *ngFor="let shoe of sala" [value]="shoe">
       {{shoe.name}}
     </mat-list-option>
   </mat-selection-list>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aplicar</button>
+  <button mat-button [mat-dialog-close]="shoes.selectedOptions.selected[0]?.value" cdkFocusInitial>Aplicar</button>
 </mat-dialog-actions>
