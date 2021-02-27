@@ -489,6 +489,7 @@ export class EditorComponent implements OnInit,AfterViewInit,OnDestroy {
         console.log(`Dialog result: ${result}`);
       });
     }else{
+      this.sala = this.sala.filter(d=>d.uid!=this.u.uid);
       const dialogRef = this.dialog.open(ListaUsuariosComponent,{
         data:{
           usuarios: this.sala
